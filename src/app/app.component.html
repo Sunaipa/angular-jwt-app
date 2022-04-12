@@ -2,6 +2,25 @@
   <div class="row justify-content-center">
     <div class="col-md-8 p3">
       <h1>Mon Application Angular JWT</h1>
+      <p *ngIf="userService.isAuthenticated()">Bonjour {{ userService.user.userName }}</p>
+      
+      <ul class="nav">
+        <li class="nav-item">
+          <a href="#"  routerLink="/home" class="nav-link">home</a>
+        </li>
+        <li class="nav-item" >
+          <a href="#" routerLink="/login" class="nav-link">login</a>
+        </li>
+        <li class="nav-item" >
+          <a href="#" routerLink="/secure" class="nav-link">secure</a>
+        </li>
+      </ul>
+      
+      
+      
+      
+      
+      
       <router-outlet></router-outlet>
     </div>
   </div>

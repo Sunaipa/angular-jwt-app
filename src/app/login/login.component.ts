@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
+import { UserService } from '../services/user.service';
 
 interface credentialsInterface{
   login: string,
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
   errorMessage = "";
 
 
-  constructor(private http: HttpClient) { };
+  constructor(private http: HttpClient, private userService: UserService) { };
 
   ngOnInit(): void {
   };
@@ -29,8 +30,10 @@ export class LoginComponent implements OnInit {
   validateForm(){
     this.http.post('http://localhost:3000/login', this.credentials)
       .subscribe(
-        (response) => {
-          console.log(response);
+        (response: any) => {
+          this.errorMessage = '';
+          this.userService.user = response.user;
+          this.userService.token = response.token;
         },
         (err) => {
           this.errorMessage = "Vos infos d'authentification  sont incorrectes";
